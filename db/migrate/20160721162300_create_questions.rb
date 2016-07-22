@@ -4,8 +4,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :title, presence: true
       t.text :text, presence: true
       t.integer :user_id, presence: true
-      t.timestamps null: false
 
+      t.timestamps null: false
     end
   end
 end

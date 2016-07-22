@@ -6,6 +6,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.text :text, presence: true
       t.integer :favorite, presence: true
 
+      t.timestamps null: false
     end
   end
 end

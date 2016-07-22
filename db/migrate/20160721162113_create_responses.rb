@@ -4,8 +4,10 @@ class CreateResponses < ActiveRecord::Migration
       t.text :text, presence: true
       t.integer :responseable_id, presence: true
       t.string :responseable_type, presence: true
-      t.timestamps null: false
 
+      t.timestamps null: false
     end
+
+    add_index :responses, [:responseable_type, :responseable_id]
   end
 end

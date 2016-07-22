@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :responses
   has_many :answers
+  has_many :votes
 
   include BCrypt
 
@@ -25,6 +26,8 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  validates :name, :email, :password_hash, presence: true
 
 end
 

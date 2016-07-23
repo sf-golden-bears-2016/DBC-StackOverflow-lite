@@ -1,6 +1,78 @@
+<container>
+    <h1 class="page-header" > <%= @user.name.capitalize %>'s Profile</h1><br> <br>
+    <% if current_user %>
+<a class="btn btn-primary" href="/question/new" role="button">Add a Question</a>
+<% end %>
+    <ul id="tabs" class="nav nav-tabs">
+        <li class="active">
+            <a href="#questions">Questions | <%=Question.where(user_id:@user.id).count %></a>
+        </li>
+        <li>
+            <a href="#answers">Answers | <%=Answer.where(user_id:@user.id).count %></a>
+        </li>
+        <li>
+            <a href="#responses">Responses | <%= Response.where(user_id:@user.id).count %></a>
+        </li>
+    </ul>
 
-<div class="container user_show_body"><br>
+    <% Question.where(user_id:@user.id).each do |q| %>
 
-    <h1 class="page-header" > <%= current_user.name.capitalize %>'s Profile</h1><br>
+<div class="tab-content" >
+    <div id="questions" class="tab-pane">
 
+        <div class="col-md-10 ">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="/questions/<%=q.id%>"><%=q.title%></h3></a> <a href="/users/<%=q.user_id %>"><h5 style="float:right;"> post by  <%= User.find(q.user_id).name %> </a> </h5>
+                </div>
+
+            </div>
+            <div class="col-xs-1">
+                <a href="#" class="glyphicon glyphicon-chevron-up"></a><br>
+                <%= Vote.where(voteable_type: "question", voteable_id: q.id).count %><br>
+                <a href="#" class="glyphicon glyphicon-chevron-down"></a>
+            </div>
+            <div class="panel-body">
+                <%= q.text %>
+            </div>
+        </div>
+    </div>
 </div>
+
+<% end %>
+<% Answer.where(user_id:@user.id).each do |a| %>
+
+<div class="tab-content" >
+    <div id="answers" class="tab-pane">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title"><a href="/questions/<%=a.question_id%>"><%=Question.find(a.question_id).title%></h3></a> <a href="/questions/<%=a.question_id %>"></h3>
+            </div>
+            <div class="col-xs-1">
+                <a href="#" class="glyphicon glyphicon-chevron-up"></a><br>
+                <%= Vote.where(voteable_type: "answer", voteable_id: a.id).count %><br>
+                <a href="#" class="glyphicon glyphicon-chevron-down"></a>
+            </div>
+            <div class="panel-body">
+                <%= a.text %></div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+    <% Response.where(user_id:@user.id).each do |r| %>
+
+    <div class="tab-content" >
+        <div id="responses" class="tab-pane">
+            <div class="panel panel-default" style="width:80%; float:right;">
+                <div class="panel-body">
+                    <%= r.text %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+
+
+</container>

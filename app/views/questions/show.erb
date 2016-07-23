@@ -1,0 +1,39 @@
+<container>
+<div class="col-md-10 ">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="/questions/<%=@question.id%>"><%=@question.title%></h3></a> <a href="/users/<%=@question.user_id %>"><h5 style="float:right;"> post by  <%= User.find(@question.user_id).name %> </a> </h5>
+        </div>
+
+    </div>
+    <div class="col-xs-1">
+        <a href="#" class="glyphicon glyphicon-chevron-up"></a><br>
+        <%= Vote.where(voteable_type: "question", voteable_id: @question.id).count %><br>
+        <a href="#" class="glyphicon glyphicon-chevron-down"></a>
+    </div>
+    <div class="panel-body">
+        <%= @question.text %>
+    </div>
+</div> <br> <br> <br> <br> <br> <br> <br> <br>
+<% Answer.where(question_id:@question.id).each do |a| %>
+<div class="col-md-10 ">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+        </div>
+        <div class="col-xs-1">
+            <a href="#" class="glyphicon glyphicon-chevron-up"></a><br>
+            <%= Vote.where(voteable_type: "answer", voteable_id: a.id).count %><br>
+            <a href="#" class="glyphicon glyphicon-chevron-down"></a>
+        </div>
+        <div class="panel-body">
+            <%= a.text %></div>
+        </div>
+    </div>
+</div>
+<br> <br> <br> <br> <br>
+
+<% end %>
+</container>
+
+
+

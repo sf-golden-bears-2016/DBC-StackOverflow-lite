@@ -1,8 +1,8 @@
-get '/users' do
-  @users = User.all #define instance variable for view
+# get '/users' do
+#   @users = User.all #define instance variable for view
 
-  erb :'users/index' #show all users view (index)
-end
+#   erb :'users/index' #show all users view (index)
+# end
 
 
 get '/users/new' do
@@ -23,7 +23,7 @@ end
 
 get '/users/:id' do
   if session[:user_id]
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
   end
   erb :'/users/show'
 end
@@ -37,3 +37,5 @@ delete '/users/:id' do
 
   redirect '/users' #redirect back to users index page
 end
+
+

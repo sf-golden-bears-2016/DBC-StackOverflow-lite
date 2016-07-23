@@ -12,17 +12,16 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title>
-DBC-Overflow</title>
+  <title>DBC-Overflow</title>
 </head>
-<body >
+<body>
 
   <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -43,7 +42,7 @@ DBC-Overflow</title>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       </ul>
-      <% if session[:user_id] %>
+<% if session[:user_id] %>
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/">Home</a></li>
@@ -55,9 +54,9 @@ DBC-Overflow</title>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/users/<%= session[:user_id] %>"><%=  "#{current_user.name}".capitalize%></a></li>
+<li><a href="/users/<%= session[:user_id] %>"><%=  "#{current_user.name}"%></a></li>
         </ul>
-      <% else %>
+<% else %>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/sessions/new">Login</a></li>
         </ul>
@@ -65,7 +64,7 @@ DBC-Overflow</title>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/users/new">Register</a></li>
         </ul>
-      <% end %>
+<%end %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

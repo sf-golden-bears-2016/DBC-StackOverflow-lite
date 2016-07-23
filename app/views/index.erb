@@ -1,0 +1,29 @@
+<container>
+
+<% Question.all.each do |q| %>
+                <div id="questions" class="tab-pane">
+
+                    <div class="col-md-10 ">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><a href="/questions/<%=q.id%>"><%=q.title%></h3></a> <a href="/users/<%=q.user_id %>"><h5 style="float:right;"> post by  <%= User.find(q.user_id).name %> </a> </h5>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="#" class="glyphicon glyphicon-chevron-up"></a><br>
+                            <%= Vote.where(voteable_type: "question", voteable_id: q.id).count %><br>
+                            <a href="#" class="glyphicon glyphicon-chevron-down"></a>
+                        </div>
+                        <div class="panel-body">
+                            <%= q.text %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% end %>
+
+
+
+</container>

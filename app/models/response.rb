@@ -4,5 +4,5 @@ class Response < ActiveRecord::Base
   belongs_to :responseable, polymorphic: true
   has_many :votes, as: :voteable, dependent: :destroy
 
-  validates :text, :responseable_id, :responseable_type, presence: true
+  validates :text, :responseable_id, :responseable_type, :user_id, presence: true
 end
